@@ -1,0 +1,167 @@
+  _______
+.`_|___|_`.     ____ ___    _    __  __  ___  _   _ ____       _  _________   __
+ \ \   / /     |  _ \_ _|  / \  |  \/  |/ _ \| \ | |  _ \     | |/ / ____\ \ / /
+  \ ' ' /      | | | | |  / _ \ | |\/| | | | |  \| | | | |    | ' /|  _|  \ V / 
+   \ " /       | |_| | | / ___ \| |  | | |_| | |\  | |_| |    | . \| |___  | |  
+    \./        |____/___/_/   \_\_|  |_|\___/|_| \_|____/     |_|\_\_____| |_|  
+     V                       ORIGINAL DOCUMENTATION         		 By Valentin
+
+
+What is Diamond Key? 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Diamond Key is a security program that secures files by converting them into a special format and codes the file's content into a jibberish-looking non readable text.
+The coded file is paired with a key, that can decode the file into human readable format. This key is located in a detachable USB device. Without that nobody can decode the file.
+
+Imagine it like a foreign or special language that only known by one person, only he/she can read files written in that language.
+The intruder can copy, damage or even delete the file, but never gonna know know what was its original content.
+
+
+DISCLAIMER: Due to high security reasons, Diamond Key does not uses admin or superuser keys, so I highly recommend you to clone your key or take a snapshot from it, because 
+ˇˇˇˇˇˇˇˇˇˇ	if you lose or damage the key, you will be permanently LOSE YOUR ACCESS TO THE FILE. (I cannot take any responibility for for accidently lost files or accesses)
+
+
+How it works?  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Diamond Key uses a form of bible coding, that "shifts" letters by a key text.
+
+Example:
+	key text (bible) -> 'apple' (for better understanding in this example I use a meaningful word but Diamond Key operates with randomly generated characters)
+	message (that we want to code) -> 'Hello World!'
+	
+	Step 1 - the key text is being wrapped by the length of the message:
+	
+			 Hello World!
+			 appleappleap
+	
+	Step 2 - converting the text into ASCII codes 
+	
+			 | H| e | l | l | o |  | W| o | r | l | d | !|
+		     |72|101|108|108|111|32|87|111|114|108|100|33|	(-> ASCII codes of 'Hello World!')
+		  
+			 | a| p | p | l | e | a| p | p | l | e | a| p |
+		     |97|112|112|108|101|97|112|112|108|101|97|112| (-> ASCII codes of 'appple')
+	
+	Step 3 - adding the character's ASCII numbers to each other (shifting), resulting new ASCII codes
+	
+			| 72|101|108|108|111| 32| 87|111|114|108|100| 33| (-> ASCII codes of 'Hello World!')
+			| 97|112|112|108|101| 97|112|112|108|101| 97|112| (-> ASCII codes of 'appple')
+		      V   V   V   V   V   V   V   V   V   V   V   V 
+			|169|213|220|216|212|129|199|223|222|209|197|145|
+		
+		
+	Step 4 - generating new characters by ascii numbers got in Step 3
+	
+			|169|213|220|216|212| 129|199|223|222|209|197|145|
+			  V   V   V   V   V    V   V   V   V   V   V   V 
+     		| © | Õ | Ü | Ø | Ô |\x81| Ç | ß | Þ | Ñ | Å | ‘ |
+     		   					   |
+     		   					   V
+		   (The HEX:81 (ascii:129) letter is marked as 'unused', that means it does not stands for any characters so text editors will not show it (or usually they are replacing it with '□' symbol)
+		   but don't worry, Diamond Key will know that character is there and still can read its ASCII code for the decoding procedure)
+	
+	[According to some theories if the 'bible' is longer than 4 characters, the code is uncrackable. Diamond Key operates with 100 randomly generated characters (which might not be ABC letters)]
+
+
+	After these steps, Diamond Key will write this jibberish-looking (©ÕÜØÔ□ÇßÞÑÅ‘) text in the file, if somebody opens it only these characters will be presented after the file-decoding-key name.
+	The file can only be decoded if we know the key world ('apple' in this case). The decoding procedure is same as the coding, except that we substract the ASCII numbers instead that we adding them togeter.
+	
+	Diamond Key uses unique file formats for coded files:
+			
+			.dkpt -> Plain Text	   -> .txt
+			.dkht -> HTML script   -> .html
+			.dkcs -> CSS script	   -> .css
+			.dkpy -> Python script -> .py
+			.dksh -> Bash script   -> .sh
+
+
+Configuration and first startup 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Mount path >>>
+	Diamond Key needs the USB mount path to run without errors, so make sure that you configured it correctly.
+	To configure the mount path, edit the .run/settings.conf file. Please do not delete the keys (the left side text of the '=' mark). 
+	
+	How should I find my mount path?
+		option 1: 
+			- insert a USB device
+			- open a file browser (GUI)
+			- go to the USB folder
+			- right click, then select 'Properties'
+			- you can see the mount path in the 'Parent folder' option
+			
+		option 2:
+			- insert a USB device
+			- open a file browser (GUI)
+			- go to the USB folder
+			- open terminal (you can open terminal with right click, then select the 'Open terminal here' or 'Open in terminal' option)
+			- type: pwd (means Print Working Directory)
+			- you will see a filepath -> /mount/path/your_usb_stick
+			- you will just need the first two (in this case) directory (-> /mount/path)
+		
+	Type or paste the resulted filepath in the settings.conf file to the mount_filepath option if you see there is already a filepath in there, 
+	you can bravely overwrite it (please do not delete or modify the left (key) side of the '=' mark)
+	
+
+Start directory path >>>
+	Diamond Key has a unique file browser, where you can select files or folders. For easier use, you can modify the basic starting direcotry, that means the file browser will not 
+	start from the /home or / directory. It is just for 'ergonomic' purposes, so you can still go back directories.
+	
+	Example:
+		Modified the starting directory /home -> /home/user/Documents
+		
+		What will happen?
+		-> the browser will start from the /home/user/Documents instead of /home, but you can still go back to the /home directory without undoing the modification above
+
+
+Reset settings.conf >>>
+	If you accidently deleted or modified the keys of the settings.conf file, you can restore the file by following these steps:
+		- clear the file's content (delete everything)
+		- copy and paste these lines to settings.conf
+		  mount_filepath=/media/<username>
+		  start_directory_path=/home
+		- modify the <username> field to your user(host)name
+	
+
+With Diamond KEy you can:
+	> read files
+	> make files
+	> convert files
+	> clone, add and delete keys
+	> make new USB keys
+	
+	
+Cloning keys/taking snapshot outside the app 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You can of course clone the folder (DiamondKey) or take a snapshot from it outside the app by copying and pasting it to another USB device. If you chose this way, you have to know that
+the key file can not be in a subfolder on the USB device and it can not be renamed. The folder must contain an 'access.txt' file too. Any other cases the program will not 
+recognize the usb as a 'key usb'.
+
+Example, when you get the path of the pasted folder:
+	- you should see somthing like this -> /path/to/usb/DiamondKey
+	- instead of this  				    -> /path/to/usb/some_random_directory/DiamondKey
+
+
+Command Line Interface 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You can use Diamond Key in terminal too, which can be useful for automation processes.
+
+Usage: dkey [option] <argument>=<value>
+Example: dkey read path=/home usb=Kingston
+
+arguments are based on options:
+	option     | arguments 
+	ˇˇˇˇˇˇ     | ˇˇˇˇˇˇˇˇˇ
+	read       > path, usb
+	new_file   > file_name, extension, directory_path, usb, key_name
+	convert    > mode, path, usb, key_name
+	clone_key  > from_usb, destination_usb, key_name
+	list_keys  > usb
+	new_usb    > usb
+	new_key	   > name, usb
+	remove_key > name, usb
+	help	   > do not need to specify arguments
+
+
+One last thing 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Diamond Key is not available for windows. The program developped and tested in Ubuntu linux (debian based linux).
+
