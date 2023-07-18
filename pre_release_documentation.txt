@@ -54,8 +54,8 @@ Example:
 			|169|213|220|216|212| 129|199|223|222|209|197|145|
 			  V   V   V   V   V    V   V   V   V   V   V   V 
      		| © | Õ | Ü | Ø | Ô |\x81| Ç | ß | Þ | Ñ | Å | ‘ |
-     		   					   |
-     		   					   V
+     		   					   
+     		   					   
 		   (The HEX:81 (ascii:129) letter is marked as 'unused', that means it does not stands for any characters so text editors will not show it (or usually they are replacing it with '□' symbol)
 		   but don't worry, Diamond Key will know that character is there and still can read its ASCII code for the decoding procedure)
 	
