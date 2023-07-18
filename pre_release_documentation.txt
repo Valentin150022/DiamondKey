@@ -165,3 +165,7 @@ One last thing
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Diamond Key is not available for windows. The program developped and tested in Ubuntu linux (debian based linux).
 
+
+----------------- RELEASE SOON! ---------------------
+
+
