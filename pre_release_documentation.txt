@@ -28,50 +28,50 @@ Example:
 	key text (bible) -> 'apple' (for better understanding in this example I use a meaningful word but Diamond Key operates with randomly generated characters)
 	message (that we want to code) -> 'Hello World!'
 	
-	Step 1 - the key text is being wrapped by the length of the message:
+Step 1 - the key text is being wrapped by the length of the message:
 	
-			 Hello World!
-			 appleappleap
+Hello World!
+appleappleap
 	
-	Step 2 - converting the text into ASCII codes 
+Step 2 - converting the text into ASCII codes 
 	
-			 | H| e | l | l | o |  | W| o | r | l | d | !|
-		     |72|101|108|108|111|32|87|111|114|108|100|33|	(-> ASCII codes of 'Hello World!')
+| H| e | l | l | o |  | W| o | r | l | d | !|
+|72|101|108|108|111|32|87|111|114|108|100|33|  (-> ASCII codes of 'Hello World!')
 		  
-			 | a| p | p | l | e | a| p | p | l | e | a| p |
-		     |97|112|112|108|101|97|112|112|108|101|97|112| (-> ASCII codes of 'appple')
+| a| p | p | l | e | a| p | p | l | e | a| p |
+|97|112|112|108|101|97|112|112|108|101|97|112| (-> ASCII codes of 'appple')
 	
-	Step 3 - adding the character's ASCII numbers to each other (shifting), resulting new ASCII codes
+Step 3 - adding the character's ASCII numbers to each other (shifting), resulting new ASCII codes
 	
-			| 72|101|108|108|111| 32| 87|111|114|108|100| 33| (-> ASCII codes of 'Hello World!')
-			| 97|112|112|108|101| 97|112|112|108|101| 97|112| (-> ASCII codes of 'appple')
-		      V   V   V   V   V   V   V   V   V   V   V   V 
-			|169|213|220|216|212|129|199|223|222|209|197|145|
+| 72|101|108|108|111| 32| 87|111|114|108|100| 33| (-> ASCII codes of 'Hello World!')
+| 97|112|112|108|101| 97|112|112|108|101| 97|112| (-> ASCII codes of 'appple')
+  V   V   V   V   V   V   V   V   V   V   V   V 
+|169|213|220|216|212|129|199|223|222|209|197|145|
 		
 		
-	Step 4 - generating new characters by ascii numbers got in Step 3
+Step 4 - generating new characters by ascii numbers got in Step 3
 	
-			|169|213|220|216|212| 129|199|223|222|209|197|145|
-			  V   V   V   V   V    V   V   V   V   V   V   V 
-     		| © | Õ | Ü | Ø | Ô |\x81| Ç | ß | Þ | Ñ | Å | ‘ |
+|169|213|220|216|212| 129|199|223|222|209|197|145|
+  V   V   V   V   V    V   V   V   V   V   V   V 
+| © | Õ | Ü | Ø | Ô |\x81| Ç | ß | Þ | Ñ | Å | ‘ |
      		   					   
      		   					   
-		   (The HEX:81 (ascii:129) letter is marked as 'unused', that means it does not stands for any characters so text editors will not show it (or usually they are replacing it with '□' symbol)
-		   but don't worry, Diamond Key will know that character is there and still can read its ASCII code for the decoding procedure)
+(The HEX:81 (ascii:129) letter is marked as 'unused', that means it does not stands for any characters so text editors will not show it (or usually they are replacing it with '□' symbol)
+but don't worry, Diamond Key will know that character is there and still can read its ASCII code for the decoding procedure)
 	
-	[According to some theories if the 'bible' is longer than 4 characters, the code is uncrackable. Diamond Key operates with 100 randomly generated characters (which might not be ABC letters)]
+[According to some theories if the 'bible' is longer than 4 characters, the code is uncrackable. Diamond Key operates with 100 randomly generated characters (which might not be ABC letters)]
 
 
-	After these steps, Diamond Key will write this jibberish-looking (©ÕÜØÔ□ÇßÞÑÅ‘) text in the file, if somebody opens it only these characters will be presented after the file-decoding-key name.
-	The file can only be decoded if we know the key world ('apple' in this case). The decoding procedure is same as the coding, except that we substract the ASCII numbers instead that we adding them togeter.
+After these steps, Diamond Key will write this jibberish-looking (©ÕÜØÔ□ÇßÞÑÅ‘) text in the file, if somebody opens it only these characters will be presented after the file-decoding-key name.
+The file can only be decoded if we know the key world ('apple' in this case). The decoding procedure is same as the coding, except that we substract the ASCII numbers instead that we adding them togeter.
 	
-	Diamond Key uses unique file formats for coded files:
+Diamond Key uses unique file formats for coded files:
 			
-			.dkpt -> Plain Text	   -> .txt
-			.dkht -> HTML script   -> .html
-			.dkcs -> CSS script	   -> .css
-			.dkpy -> Python script -> .py
-			.dksh -> Bash script   -> .sh
+.dkpt -> Plain Text	   -> .txt
+.dkht -> HTML script   -> .html
+.dkcs -> CSS script	   -> .css
+.dkpy -> Python script -> .py
+.dksh -> Bash script   -> .sh
 
 
 Configuration and first startup 
@@ -121,7 +121,7 @@ Reset settings.conf >>>
 		- modify the <username> field to your user(host)name
 	
 
-With Diamond KEy you can:
+With Diamond Key you can:
 	> read files
 	> make files
 	> convert files
