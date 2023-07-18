@@ -4,7 +4,7 @@
   \ ' ' /      | | | | |  / _ \ | |\/| | | | |  \| | | | |    | ' /|  _|  \ V / 
    \ " /       | |_| | | / ___ \| |  | | |_| | |\  | |_| |    | . \| |___  | |  
     \./        |____/___/_/   \_\_|  |_|\___/|_| \_|____/     |_|\_\_____| |_|  
-     V                       ORIGINAL DOCUMENTATION         		 By Valentin
+     V                       ORIGINAL DOCUMENTATION         		 By Valentin [aka. Peter (Bálint) Deák]
 
 
 What is Diamond Key? 
